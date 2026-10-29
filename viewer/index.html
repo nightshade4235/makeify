@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>makeify · krpano GLB viewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <!--
+      krpano.js is distributed with the licensed krpano viewer.
+      Copy it to viewer/krpano/ before opening this example.
+    -->
+    <script src="./krpano/krpano.js"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="viewer-card" aria-labelledby="viewer-title">
+        <div class="viewer-card__header">
+          <div>
+            <p class="eyebrow">makeify · browser viewer example</p>
+            <h1 id="viewer-title">Explore the reconstructed space</h1>
+            <p class="intro">
+              A centered krpano ThreeJS hotspot loads the example GLB exported by
+              <code>demo.py</code>. Drag to look around and use the wheel to zoom.
+            </p>
+          </div>
+          <span class="status-pill">GLB · krpano</span>
+        </div>
+
+        <div id="pano" class="viewer-stage" aria-label="Interactive krpano GLB viewer">
+          <noscript>JavaScript is required to view the 3D model.</noscript>
+        </div>
+
+        <div class="viewer-card__footer">
+          <span>Centered at the scene origin</span>
+          <a href="../example%20outputs/2.glb" download>Download source GLB</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // krpano reads the scene and the centered GLB hotspot from scene.xml.
+      embedpano({
+        xml: "./scene.xml",
+        target: "pano",
+        consolelog: true,
+        mwheel: true,
+        bgcolor: "#0b1020"
+      });
+    </script>
+  </body>
+</html>

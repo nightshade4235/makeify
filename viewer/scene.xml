@@ -1,0 +1,71 @@
+<krpano version="1.24" title="makeify GLB viewer">
+  <!--
+    The ThreeJS plugin supports GLB/GLTF hotspots. Keep the plugin next to
+    krpano.js (or change these URLs to your shared krpano installation).
+  -->
+  <plugin
+    name="threejs"
+    keep="true"
+    url="./krpano/threejs_krpanoplugin.js"
+    useembeddedthreejs="true"
+    integratedrendering="true"
+    es6modules="false"
+    cache="true"
+  />
+
+  <threejs
+    shadowmap="pcf"
+    ambientlight="1.2"
+    ambientcolor="0xFFFFFF"
+    tonemapping="acesfilmic"
+    exposure="1.0"
+    shadowfloor="false"
+  />
+
+  <!-- A transparent pano background leaves the model on the page backdrop. -->
+  <display html5="only" />
+  <view
+    hlookat="0"
+    vlookat="0"
+    fovtype="HFOV"
+    fov="70"
+    fovmin="30"
+    fovmax="110"
+    limitview="off"
+  />
+  <control
+    mousetype="drag2d"
+    mouseaccelerate="1.0"
+    mousefovchange="1.0"
+    keybaccelerate="0.05"
+    keybfriction="0.15"
+    zoomtocursor="true"
+  />
+
+  <!--
+    The GLB bounds are roughly 0.66 x 0.31 x 0.76 in source units. krpano's
+    ThreeJS hotspot uses centimeters, so scale=100 makes this example easy to
+    inspect. depth=0 makes tx/ty/tz the complete 3D position. All three are
+    zero, which places the model at the center of the viewer's scene.
+  -->
+  <hotspot
+    name="makeify_reconstruction"
+    type="threejs"
+    url="../example%20outputs/2.glb"
+    ath="0"
+    atv="0"
+    depth="0"
+    tx="0"
+    ty="0"
+    tz="0"
+    rx="0"
+    ry="0"
+    rz="0"
+    scale="100"
+    castshadow="true"
+    receiveshadow="true"
+    hittest="true"
+    capture="true"
+    onloaderror="trace('Could not load the makeify GLB: ' + get(name).url)"
+  />
+</krpano>

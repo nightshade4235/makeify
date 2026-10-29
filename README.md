@@ -218,6 +218,7 @@ The main project documentation is written in Markdown (`.md`) so it can be read 
 | [`architecture/system.mmd`](architecture/system.mmd) | Source architecture diagram |
 | [`configs/manifest.example.yaml`](configs/manifest.example.yaml) | Example capture and reconstruction manifest |
 | [`third_party/NOTICE.md`](third_party/NOTICE.md) | Dependency, dataset, checkpoint, and model provenance register |
+| [`viewer/`](viewer/) | Centered krpano ThreeJS/GLB browser viewer example |
 | [`LICENSE`](LICENSE) | License for original repository material and third-party boundary |
 
 This repository intentionally does not bundle private captures, model checkpoints, generated scene assets, or large media files. Those artifacts should remain in controlled storage and be referenced through hashes and provenance records.
@@ -228,6 +229,7 @@ This repository intentionally does not bundle private captures, model checkpoint
 
 - **Capture SOP:** completed once and treated as the operational input to the pipeline.
 - **Implementation:** DUSt3R-based Gradio image-to-GLB reconstruction in `demo.py`.
+- **Browser example:** centered krpano ThreeJS viewer in `viewer/`, loading `example outputs/2.glb` at the scene origin.
 - **Result:** implemented and evaluated; usable output achieved, but geometry quality remained below the target required for robust navigation.
 - **System design:** defined from ingestion through viewer, POI search, and navigation.
 - **Licensing posture:** upstream DUSt3R material remains separated and non-commercially constrained unless written permission says otherwise.
