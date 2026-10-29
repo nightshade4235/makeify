@@ -4,7 +4,7 @@ This example embeds the example reconstruction at [`../example outputs/2.glb`](.
 
 ## Setup
 
-krpano distributes `krpano.js` and `threejs_krpanoplugin.js` with its licensed viewer package. Copy those files into this directory without committing licensed binaries:
+The separately licensed krpano runtime files are included in `viewer/krpano/` for this example:
 
 ```text
 viewer/
@@ -12,6 +12,8 @@ viewer/
     krpano.js
     threejs_krpanoplugin.js
 ```
+
+Read [`krpano/THIRD_PARTY_LICENSE.md`](krpano/THIRD_PARTY_LICENSE.md) before redistributing or deploying the example. The runtime is not covered by the makeify license.
 
 The XML scene intentionally places the model at the origin with `depth="0"` and `tx="0" ty="0" tz="0"`. The page layout centers the viewer card in the browser viewport. The `scale="100"` setting converts the small source reconstruction into a useful inspection size for krpano's centimeter-based 3D hotspot coordinates.
 
