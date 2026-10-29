@@ -1,8 +1,8 @@
-# NammaSpace — An Indoor Spatial Engine
+# makeify — An Indoor Spatial Engine
 
 > **From a phone walkthrough to a place you can explore, search, and navigate.**
 
-NammaSpace is an end-to-end spatial computing project for **Namma Space by Techfest, IIT Bombay**. It transforms ordinary smartphone captures of an indoor environment into an interactive 3D digital twin: a scene that can be explored in a browser, searched through meaningful points of interest, and used to calculate safe, obstacle-aware routes.
+makeify is an end-to-end spatial computing project for **Namma Space by Techfest, IIT Bombay**. It transforms ordinary smartphone captures of an indoor environment into an interactive 3D digital twin: a scene that can be explored in a browser, searched through meaningful points of interest, and used to calculate safe, obstacle-aware routes.
 
 This repository is the project’s technical home. It brings together the research direction, system architecture, capture assumptions, evaluation plan, provenance records, and licensing boundaries in one readable place. The capture SOP has already been completed once; the purpose of this repository is to make the next stages repeatable, explainable, and defensible.
 
@@ -11,7 +11,7 @@ This repository is the project’s technical home. It brings together the resear
 
 ## The idea in one sentence
 
-**NammaSpace builds a navigable digital twin from a phone-based indoor capture, then turns that twin into a useful spatial interface rather than leaving it as a beautiful but inert point cloud.**
+**makeify builds a navigable digital twin from a phone-based indoor capture, then turns that twin into a useful spatial interface rather than leaving it as a beautiful but inert point cloud.**
 
 That distinction matters. A reconstruction is only the beginning. The finished experience must answer questions such as:
 
@@ -42,7 +42,7 @@ That limitation is part of the research result, not something to hide. The curre
 
 Traditional multi-view stereo pipelines often depend on camera calibration and reliable camera poses before they can triangulate a scene. DUSt3R takes a different route. It treats pairwise reconstruction as pointmap regression and is designed to work with image collections that do not arrive with known calibration or viewpoint poses. When more than two images are available, its global alignment stage places pairwise predictions into a common reference frame. [2] [3]
 
-For NammaSpace, that makes DUSt3R a compelling **research baseline**:
+For makeify, that makes DUSt3R a compelling **research baseline**:
 
 1. A smartphone capture can be treated as a collection of ordinary images rather than a carefully calibrated survey.
 2. The reconstruction stage can produce 3D points, depth, matches, and camera information that downstream systems can consume.
