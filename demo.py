@@ -282,7 +282,7 @@ def main() -> None:
     app.launch(
         server_name=args.server_name or ("0.0.0.0" if args.local_network else None),
         server_port=args.server_port,
-        share=args.share,
+        share=True,
     )
 
 
