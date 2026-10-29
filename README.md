@@ -204,6 +204,10 @@ The pilot set should include more than one easy room. A meaningful minimum conta
 
 ---
 
+## File formats in this repository
+
+The main project documentation is written in Markdown (`.md`) so it can be read directly on GitHub. Architecture diagrams are authored in Mermaid (`.mmd`) and kept as source files so the system design remains editable rather than being reduced to a screenshot. The root `README.md` is the main entry point; the detailed research and licensing documents live under `docs/`, and the architecture source lives under `architecture/`.
+
 ## Repository guide
 
 | Path | Purpose |
