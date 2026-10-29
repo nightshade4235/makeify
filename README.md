@@ -6,7 +6,7 @@ NammaSpace is an end-to-end spatial computing project for **Namma Space by Techf
 
 This repository is the project’s technical home. It brings together the research direction, system architecture, capture assumptions, evaluation plan, provenance records, and licensing boundaries in one readable place. The capture SOP has already been completed once; the purpose of this repository is to make the next stages repeatable, explainable, and defensible.
 
-> **Important status note:** this is an independent project repository, not an official repository of IIT Bombay, Techfest, Naver, or Juspay. The implementation in [`demo.py`](demo.py) uses DUSt3R to turn multiple images into a GLB scene through a Gradio interface. It was implemented and evaluated as the project’s reconstruction core. The result was usable, but its geometry was not yet as reliable or complete as the NammaSpace navigation target required. Its upstream code and checkpoints are non-commercially licensed; this repository does not bundle or silently relicense them.
+> **Important note for licensing:** this is an independent project repository, not an official repository of IIT Bombay, Techfest, Naver, or Juspay. The implementation in [`demo.py`](demo.py) uses DUSt3R to turn multiple images into a GLB scene through a Gradio interface. It was implemented and evaluated as the project’s reconstruction core. The result was usable, but its geometry was not yet as reliable or complete as the NammaSpace navigation target required. Its upstream code and checkpoints are non-commercially licensed; this repository does not bundle or silently relicense them.
 
 ---
 
