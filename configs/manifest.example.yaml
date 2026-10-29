@@ -1,0 +1,26 @@
+project: nammaspace
+scene_id: demo-room-001
+capture:
+  operator: replace-me
+  device: replace-me
+  sop_version: 0.1.0
+  source_type: smartphone_video_or_images
+  privacy_review: pending
+  retention: restricted-staging
+reconstruction:
+  adapter: dust3r-baseline
+  mode: non-commercial-research-only
+  upstream_commit: record-before-run
+  checkpoint_sha256: record-before-run
+  image_size: 512
+  global_alignment: enabled
+  confidence_threshold: record-in-experiment-log
+geometry:
+  scale_status: relative
+  collision_clearance_m: 0.35
+navigation:
+  planner: astar
+  no_path_policy: explain-and-return-empty-route
+provenance:
+  source_manifest: third_party/NOTICE.md
+  scene_hash: record-after-capture
