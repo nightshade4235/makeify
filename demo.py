@@ -185,7 +185,7 @@ def reconstruct(
         return value
 
     prediction_dict = {
-        "images": images.detach().float().cpu().numpy().squeeze(0).transpose(0, 2, 3, 1),
+        "images": images.detach().float().cpu().numpy().transpose(0, 2, 3, 1),
         "extrinsic": to_numpy(extrinsic),
         "intrinsic": to_numpy(intrinsic),
         "world_points_from_depth": to_numpy(world_points_from_depth),
