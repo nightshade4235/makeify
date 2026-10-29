@@ -18,8 +18,6 @@ The page says solutions must be the team’s original work, open-source tools mu
 - Master PDF: **2–4 pages**, containing the submission index, stable links, license/provenance notes, and reproducibility instructions. Keep it separate from the longer report only if the portal allows multiple PDFs; otherwise merge the report and index into one master PDF.
 - Demo video: **3–5 minutes** for Round 1, as explicitly stated on the official page. [1]
 
-**Open action:** before submission, check the authenticated competition portal and the latest organizer announcement for a superseding page/word/file-size constraint. Record the date and URL in the submission checklist. If the portal remains silent, use the working target above and prioritize completeness over padding.
-
 ## Acceptance checklist
 
 - [ ] Capture SOP is written, repeatable, and tested by a second operator.

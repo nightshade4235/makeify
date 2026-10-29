@@ -6,8 +6,7 @@ NammaSpace is an end-to-end spatial computing project for **Namma Space by Techf
 
 This repository is the project’s technical home. It brings together the research direction, system architecture, capture assumptions, evaluation plan, provenance records, and licensing boundaries in one readable place. The capture SOP has already been completed once; the purpose of this repository is to make the next stages repeatable, explainable, and defensible.
 
-> **Important note for licensing:** this is an independent project repository, not an official repository of IIT Bombay, Techfest, Naver, or Juspay. The implementation in [`demo.py`](demo.py) uses DUSt3R to turn multiple images into a GLB scene through a Gradio interface. It was implemented and evaluated as the project’s reconstruction core. The result was usable, but its geometry was not yet as reliable or complete as the NammaSpace navigation target required. Its upstream code and checkpoints are non-commercially licensed; this repository does not bundle or silently relicense them.
-
+> **License boundary:** DUSt3R code and checkpoints are subject to CC BY-NC-SA 4.0 and the licenses of their datasets and base checkpoints. This repository does not relicense those materials for commercial use.
 ---
 
 ## The idea in one sentence
@@ -30,8 +29,6 @@ The official Namma Space brief describes an intelligent spatial engine that conv
 For Round 1, teams are asked to submit a technical abstract, a proof-of-concept web viewer, a code repository, and a 3–5 minute demo showing free roaming. Later stages add POI tagging, search indexing, obstacle-aware desktop navigation, and a new venue captured on the IIT Bombay campus. [1]
 
 The public competition page requires open-source tools to be credited and licensed correctly. It also asks that supplementary links or drive materials be organized inside one master PDF. The public page does **not** state a formal page count, word count, font specification, or file-size limit for the technical abstract or master PDF. That absence is recorded explicitly in [`docs/problem-statement.md`](docs/problem-statement.md) rather than replaced with an invented rule.
-
-Our working editorial target is a focused **6–8 page technical report**, excluding references and appendices, supported by a **2–4 page master PDF** containing stable links, provenance notes, and reproducibility instructions. These are project targets, not official competition requirements; the authenticated portal and latest organizer announcement remain authoritative.
 
 ---
 
@@ -191,7 +188,7 @@ The full controls are documented in [`docs/cleanroom-and-licensing.md`](docs/cle
 
 The project should be evaluated as a system, not only as a reconstruction model. The internal scorecard follows the competition’s emphasis on capture reliability, reconstruction quality, viewer experience, spatial search, path calculation, and technical communication. [1]
 
-Recommended measurements include:
+Measurements include:
 
 - capture success rate under the completed SOP;
 - room and corridor completeness;
@@ -214,7 +211,6 @@ The pilot set should include more than one easy room. A meaningful minimum conta
 | [`docs/problem-statement.md`](docs/problem-statement.md) | Official requirements, submission contract, and document-length audit |
 | [`docs/technical-report.md`](docs/technical-report.md) | Detailed architecture, pipeline, API boundary, evaluation, and risks |
 | [`docs/cleanroom-and-licensing.md`](docs/cleanroom-and-licensing.md) | Clean-room separation, provenance, licensing, and release gates |
-| [`docs/implementation-plan.md`](docs/implementation-plan.md) | Staged build plan and exit criteria |
 | [`architecture/system.mmd`](architecture/system.mmd) | Source architecture diagram |
 | [`configs/manifest.example.yaml`](configs/manifest.example.yaml) | Example capture and reconstruction manifest |
 | [`third_party/NOTICE.md`](third_party/NOTICE.md) | Dependency, dataset, checkpoint, and model provenance register |
@@ -233,15 +229,6 @@ This repository intentionally does not bundle private captures, model checkpoint
 - **Licensing posture:** upstream DUSt3R material remains separated and non-commercially constrained unless written permission says otherwise.
 - **Submission documentation:** technical report, length audit, implementation plan, architecture diagram, and provenance register are included.
 - **Next engineering focus:** build the smallest complete vertical slice, then test it against difficult indoor scenes before optimizing model quality.
-
-## Suggested release sequence
-
-1. Verify the authenticated competition portal and record any updated length, file-size, or submission rules.
-2. Run one complete capture-to-viewer pilot using the finished SOP.
-3. Freeze the scene package and API contracts before tuning the reconstruction model.
-4. Populate [`third_party/NOTICE.md`](third_party/NOTICE.md) with exact versions, hashes, licenses, and data terms.
-5. Prepare the technical abstract, master PDF, stable viewer link, repository instructions, and 3–5 minute demo.
-6. Perform a final clean-room and license review before sharing any model, checkpoint, or hosted artifact.
 
 ## Citation
 

@@ -156,19 +156,6 @@ Dense pairwise reasoning can become expensive as the number of images grows. A p
 
 The official DUSt3R repository places its code under CC BY-NC-SA 4.0 and notes that checkpoints also depend on the licenses of public training datasets and base checkpoints. [3] The Creative Commons terms allow reproduction and adaptations for NonCommercial purposes subject to attribution and ShareAlike conditions. [4] This is compatible with a carefully reviewed research track, not an automatic permission for commercial deployment.
 
-## Engineering recommendations after the first implementation
-
-1. **Improve the capture before changing the model.** More consistent overlap and coverage can yield a larger practical improvement than immediately changing checkpoints.
-2. **Select keyframes instead of pairing every frame.** Keep views that add coverage, viewpoint change, or loop-closure evidence.
-3. **Measure confidence spatially.** Convert point confidence into regions so the viewer and navigation graph can treat weak areas conservatively.
-4. **Add scale anchors.** A measured doorway, known floor marker, or other controlled reference is more useful than quietly assuming metric scale.
-5. **Test loop closure explicitly.** Walk a route that returns near its start and measure drift before building pathfinding claims.
-6. **Keep uncertain geometry blocked.** A false obstacle is inconvenient; a missing wall can make a route unsafe.
-7. **Separate visual and collision geometry.** The viewer can use a detailed representation while the planner uses a simplified, conservative surface.
-8. **Create the scene package before the final viewer.** Stable files and schemas make it possible to compare models, checkpoints, and post-processing choices fairly.
-9. **Use a hybrid refinement path if navigation remains unstable.** DUSt3R can remain the fast initializer while geometric or measured constraints improve the final map.
-10. **Record failure cases, not only successful screenshots.** A research report becomes more credible when it explains where the system breaks and what the next experiment is meant to fix.
-
 ## Evaluation plan
 
 The evaluation should measure the complete experience:

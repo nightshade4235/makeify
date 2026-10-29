@@ -6,7 +6,6 @@ The official DUSt3R repository states that its code is distributed under **CC BY
 
 This creates a practical boundary: a public repository, a competition submission, job consideration, or a future product may not all have the same legal character. The word “non-commercial” is context-dependent. The team should obtain a written determination from the relevant rights holder or counsel before using DUSt3R code/checkpoints in anything intended for commercial advantage, production, paid work, or transfer to an employer.
 
-This document is an engineering control plan, not legal advice.
 
 ## Two-track strategy
 

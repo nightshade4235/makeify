@@ -2,6 +2,6 @@ Copyright (c) 2026 NammaSpace project contributors
 
 Unless a file states otherwise, the original reports, configuration examples, diagrams, and original code in this repository are licensed under the Apache License, Version 2.0.
 
-Third-party code, models, datasets, fonts, media, and trademarks are not covered by this notice. See third_party/NOTICE.md and the relevant upstream license. In particular, DUSt3R code and checkpoints are subject to their own terms and may be non-commercial only.
+Third-party code, models, datasets, fonts, media, and trademarks are not covered by this license. DUSt3R code and checkpoints remain subject to CC BY-NC-SA 4.0 and their upstream dataset and base-checkpoint terms; see third_party/NOTICE.md.
 
 SPDX-License-Identifier: Apache-2.0
