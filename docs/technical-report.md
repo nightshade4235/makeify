@@ -2,7 +2,7 @@
 
 ## Design objective
 
-The repository currently contains a working VGGT-based prototype in `demo.py` that accepts multiple images and exports a GLB scene. This report uses that prototype as the starting point, while evaluating DUSt3R as a separate reconstruction adapter and clean-room research direction. The distinction is intentional: it keeps current implementation claims accurate and lets the viewer, scene package, POI layer, and navigation layer evolve independently of the first model choice.
+The repository contains an implemented DUSt3R reconstruction core in `demo.py`. It accepts multiple images, performs pairwise inference and global alignment, filters confidence, and exports a colored GLB scene. The implementation produced usable reconstructions and the example outputs included here, but its geometry quality was not yet as reliable as the NammaSpace navigation target required. This report therefore treats the result as a completed research implementation with a clear, measured gap to production-quality spatial understanding.
 
 The system should turn a short, repeatable smartphone capture into a navigable indoor digital twin. The engineering goal is not merely a dense point cloud. It is a stable scene package that can be rendered in a browser, queried for POIs, and converted into a walkable graph for collision-aware routing.
 

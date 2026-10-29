@@ -3,7 +3,7 @@
 torch
 torchvision
 
-# VGGT / geometry
+# DUSt3R / geometry
 roma
 einops
 scipy

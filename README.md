@@ -6,7 +6,7 @@ NammaSpace is an end-to-end spatial computing project for **Namma Space by Techf
 
 This repository is the project’s technical home. It brings together the research direction, system architecture, capture assumptions, evaluation plan, provenance records, and licensing boundaries in one readable place. The capture SOP has already been completed once; the purpose of this repository is to make the next stages repeatable, explainable, and defensible.
 
-> **Important status note:** this is an independent project repository, not an official repository of IIT Bombay, Techfest, Naver, or Juspay. The current prototype in [`demo.py`](demo.py) uses VGGT to turn multiple images into a GLB scene through a Gradio interface. DUSt3R is the researched, replaceable reconstruction baseline and clean-room direction. Its upstream code and checkpoints are non-commercially licensed; this repository does not bundle or silently relicense them.
+> **Important status note:** this is an independent project repository, not an official repository of IIT Bombay, Techfest, Naver, or Juspay. The implementation in [`demo.py`](demo.py) uses DUSt3R to turn multiple images into a GLB scene through a Gradio interface. It was implemented and evaluated as the project’s reconstruction core. The result was usable, but its geometry was not yet as reliable or complete as the NammaSpace navigation target required. Its upstream code and checkpoints are non-commercially licensed; this repository does not bundle or silently relicense them.
 
 ---
 
@@ -37,11 +37,9 @@ Our working editorial target is a focused **6–8 page technical report**, exclu
 
 ## What exists in this repository today
 
-The current implementation is a focused prototype rather than a finished competition platform. [`demo.py`](demo.py) loads a VGGT checkpoint, accepts multiple images of one scene through a Gradio interface, predicts camera and depth information, and exports a colored GLB reconstruction. It supports confidence filtering, predicted pointmaps or depth-and-camera visualization, CPU/CUDA selection, resolution control, and local checkpoint loading.
+DUSt3R was implemented as the reconstruction core in [`demo.py`](demo.py). It accepts multiple images of one indoor scene, performs pairwise inference, aligns the resulting pointmaps, filters low-confidence geometry, and exports a colored GLB reconstruction through Gradio. The implementation was good enough to prove the pipeline and produce the example outputs in this repository, but not good enough to claim reliable, competition-ready geometry for every scene.
 
-That prototype is valuable because it gives the research plan a real starting point. It also makes the boundary clear: the current code demonstrates image-to-3D reconstruction, while the full NammaSpace target still requires a durable scene package, semantic POIs, a searchable index, a walkable occupancy graph, obstacle-aware routing, and a browser experience built around those products.
-
-The repository keeps the existing VGGT implementation and example outputs intact. The DUSt3R report below describes the next reconstruction adapter to evaluate, not a claim that the current script already runs DUSt3R.
+That limitation is part of the research result, not something to hide. The current code demonstrates image-to-3D reconstruction, while the full NammaSpace target still requires a more reliable scene package, semantic POIs, a searchable index, a walkable occupancy graph, obstacle-aware routing, and a browser experience built around those products. The next engineering step is to improve capture coverage, alignment, confidence filtering, and scene-scale handling rather than pretending the first DUSt3R run solved the whole problem.
 
 ## Why DUSt3R is a strong research starting point
 
@@ -229,8 +227,8 @@ This repository intentionally does not bundle private captures, model checkpoint
 ## Current project status
 
 - **Capture SOP:** completed once and treated as the operational input to the pipeline.
-- **Current prototype:** VGGT-based Gradio image-to-GLB reconstruction in `demo.py`.
-- **Research direction:** DUSt3R-centred reconstruction adapter with a clean-room replacement path.
+- **Implementation:** DUSt3R-based Gradio image-to-GLB reconstruction in `demo.py`.
+- **Result:** implemented and evaluated; usable output achieved, but geometry quality remained below the target required for robust navigation.
 - **System design:** defined from ingestion through viewer, POI search, and navigation.
 - **Licensing posture:** upstream DUSt3R material remains separated and non-commercially constrained unless written permission says otherwise.
 - **Submission documentation:** technical report, length audit, implementation plan, architecture diagram, and provenance register are included.
