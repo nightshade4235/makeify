@@ -24,9 +24,9 @@ The system therefore treats geometry, semantics, search, navigation, and present
 
 ## What the competition asks for
 
-The official Namma Space brief describes an intelligent spatial engine that converts standard smartphone captures of indoor spaces into interactive 3D digital twins. The competition is organized around reconstruction and roaming, POI search and navigation, and a final on-site capture and live demonstration. [1]
+The official Namma Space brief describes an intelligent spatial engine that converts standard smartphone captures of indoor spaces into interactive 3D digital twins. The competition is organized around reconstruction and roaming, POI (Point of Interest / Pixel of Interest) search and navigation, and a final on-site capture and live demonstration. [1]
 
-For Round 1, teams are asked to submit a technical abstract, a proof-of-concept web viewer, a code repository, and a 3–5 minute demo showing free roaming. Later stages add POI tagging, search indexing, obstacle-aware desktop navigation, and a new venue captured on the IIT Bombay campus. [1]
+For Round 1, a technical abstract is to be submitted alongside a proof-of-concept web viewer, a code repository, and a 3–5 minute demo showing free roaming. Later stages add POI tagging, search indexing, obstacle-aware desktop navigation, and a new venue captured on the IIT Bombay campus. [1]
 
 The public competition page requires open-source tools to be credited and licensed correctly. It also asks that supplementary links or drive materials be organized inside one master PDF. The public page does **not** state a formal page count, word count, font specification, or file-size limit for the technical abstract or master PDF. That absence is recorded explicitly in [`docs/problem-statement.md`](docs/problem-statement.md) rather than replaced with an invented rule.
 
@@ -36,11 +36,15 @@ The public competition page requires open-source tools to be credited and licens
 
 DUSt3R was implemented as the reconstruction core in [`demo.py`](demo.py). It accepts multiple images of one indoor scene, performs pairwise inference, aligns the resulting pointmaps, filters low-confidence geometry, and exports a colored GLB reconstruction through Gradio. The implementation was good enough to prove the pipeline and produce the example outputs in this repository, but not good enough to claim reliable, competition-ready geometry for every scene.
 
-That limitation is part of the research result, not something to hide. The current code demonstrates image-to-3D reconstruction, while the full NammaSpace target still requires a more reliable scene package, semantic POIs, a searchable index, a walkable occupancy graph, obstacle-aware routing, and a browser experience built around those products. The next engineering step is to improve capture coverage, alignment, confidence filtering, and scene-scale handling rather than pretending the first DUSt3R run solved the whole problem.
+That limitation is not something to hide, it is something that has to be addressed for the completion of this project. The current code demonstrates image-to-3D reconstruction, while the full NammaSpace target still requires a more reliable scene package, semantic POIs, a searchable index, a walkable occupancy graph, obstacle-aware routing (no wall clipping), and a browser experience built around those products (as to prevent any cross-platform compatability issues). The next engineering step is to improve capture coverage, alignment, confidence filtering, and scene-scale handling.
 
 ## Why DUSt3R is a strong research starting point
 
-Traditional multi-view stereo pipelines often depend on camera calibration and reliable camera poses before they can triangulate a scene. DUSt3R takes a different route. It treats pairwise reconstruction as pointmap regression and is designed to work with image collections that do not arrive with known calibration or viewpoint poses. When more than two images are available, its global alignment stage places pairwise predictions into a common reference frame. [2] [3]
+DUSt3R (Dense and Unconstrained Stereo 3D Reconstruction) is a highly-specialized Machine Learning model pipeline used for 3D reconstruction.
+
+Normally, to build a 3D scene from photos, software needed to know the exact camera parameters (where the camera was standing, the lens focal length, etc.). But to figure out those camera parameters, the software needed to understand the 3D scene. While COLMAP (Collection Mapper) and SfM (Structure from Motion) required heavy, sensitive calculations where a single badly lit area could ruin the whole render, DUSt3R skips the camera math entirely and uses unfiltered footage to generate pointmaps (tensors where every pixel contains an exact X, Y, Z coordinate relative to the camera) that help regress a render. Many SLAM frameworks by numerous tech groups have started to utilize DUSt3R for its efficiency and versatility.
+
+Traditional multi-view stereo pipelines often depend on camera calibration and reliable camera poses before they can triangulate a scene. DUSt3R takes a different route. It treats pairwise reconstruction as pointmap regression and is designed to work with image collections that do not arrive with known calibration or viewpoint poses. When more than two images are available, its global alignment stage places pairwise predictions into a common reference frame using tensors from the pointmap and trends to calculate the dimensions and placements of all the items in the render. [2] [3]
 
 For makeify, that makes DUSt3R a compelling **research baseline**:
 
@@ -49,7 +53,7 @@ For makeify, that makes DUSt3R a compelling **research baseline**:
 3. Confidence values provide a useful signal for deciding which parts of the scene should be trusted, reviewed, or treated as uncertain.
 4. The model can sit behind a narrow adapter, allowing the rest of the system to remain stable if the reconstruction engine changes.
 
-The important engineering decision is not to make DUSt3R the identity of the entire project. It should be a replaceable component inside a larger spatial pipeline.
+The important engineering decision is not to make DUSt3R the identity of the entire project. It should be a replaceable component of a larger picture.
 
 ### The research position
 
@@ -99,11 +103,13 @@ These are the project’s current example outputs, generated from a small multi-
 
 The completed SOP is the foundation of the whole project. It should produce overlapping views, gradual motion, room entrances from useful angles, and enough coverage of floors, ceilings, corners, corridors, and difficult surfaces to support reconstruction. Sensitive material, faces, screens, and unnecessary personal data should be excluded or redacted at capture time.
 
+To achieve this, we plan on gluing the whole scene together and only considering a specific radius around the splat as a hitbox to generate a 3d model which we will use as the presentation content instead of the raw unfurnished result.
+
 Each capture session should carry a manifest containing a session identifier, frame paths, timestamps, device information, route order, operator, consent or retention status, and a scene boundary. The manifest is not paperwork added after the fact; it is what allows a result to be repeated and explained.
 
 ### 2. Ingest and quality gates
 
-The ingest stage normalizes orientation, removes duplicates, scores blur and exposure, checks motion, and measures whether adjacent views overlap sufficiently. Original files remain in restricted staging. Inference uses a documented derivative set, with hashes retained for reproducibility.
+The ingest stage normalizes orientation, removes duplicates, scores blur and exposure, checks motion, and measures whether adjacent views overlap sufficiently. Original files remain in restricted staging. Inference uses a documented derivative set (a set containing all the limit points of a given subset of a topology), with hashes retained for reproducibility.
 
 ### 3. Reconstruction
 
@@ -122,6 +128,8 @@ ReconstructionResult:
   provenance: ProvenanceRecord
 ```
 
+It is formatted much like the TIFF format in which the R, G, B, and A channels have their own values. In out return table we return the structure in parts: points as a 2D array, the colors to match every element on the point array and the confidence of each element of the point array.
+
 For a DUSt3R baseline run, record the upstream commit, checkpoint hash, image resolution, device, and inference parameters. The official implementation documents model setup, checkpoint handling, global alignment, and confidence filtering. [3]
 
 ### 4. Alignment and geometry products
@@ -134,7 +142,7 @@ The browser should not receive an unfiltered research point cloud. The pipeline 
 
 The semantic layer gives the geometry a purpose. It records rooms, doors, stairs, obstacles, uncertain regions, and points of interest. A POI has a stable identifier, label, aliases, category, 3D anchor, nearest walkable node, confidence, and annotation source.
 
-Walkability is represented as a conservative occupancy grid or 2.5D map. Walls, furniture, closed doors, voids, stairs, and uncertain geometry can be marked blocked or restricted. The resulting graph supports A* or Dijkstra routing with configurable clearance. When no route exists, the API should return a reason instead of failing silently.
+Walkability is represented as a conservative occupancy grid or 2.5D map. Walls, furniture, closed doors, voids, stairs, and uncertain geometry can be marked blocked or restricted. The resulting graph supports A* or Dijkstra routing with configurable clearance. When no route exists, the API should return a reason instead of failing silently, so a try-catch system is used.
 
 ### 6. Viewer and service boundary
 
