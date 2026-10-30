@@ -65,21 +65,7 @@ A dense point cloud may look impressive in a screenshot. A useful digital twin m
 
 ## The system, from capture to experience
 
-```mermaid
-flowchart LR
-  A[Capture SOP<br>smartphone frames + metadata] --> B[Ingest<br>privacy + quality gates]
-  B --> C[Frame selection<br>overlap + coverage]
-  C --> D[Reconstruction adapter<br>DUSt3R baseline / clean-room model]
-  D --> E[Global alignment<br>confidence filtering + scale]
-  E --> F[Scene package<br>geometry + poses + confidence]
-  F --> G[Semantic layer<br>rooms, doors, obstacles, POIs]
-  G --> H[Navigation graph<br>walkable cells + clearance]
-  F --> I[Web viewer<br>LOD geometry + camera path]
-  G --> J[POI index<br>text + spatial filters]
-  H --> K[Route API<br>A* / Dijkstra]
-  J --> I
-  K --> I
-```
+![](assets/3.svg)
 
 The source diagram is available at [`architecture/system.mmd`](architecture/system.mmd).
 
