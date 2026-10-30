@@ -65,7 +65,7 @@ A dense point cloud may look impressive in a screenshot. A useful digital twin m
 
 ## The system, from capture to experience
 
-![](assets/3.svg)
+![Project Flowchart as Mermaid didnt work](assets/3.svg)
 
 The source diagram is available at [`architecture/system.mmd`](architecture/system.mmd).
 
