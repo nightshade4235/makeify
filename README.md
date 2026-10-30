@@ -67,16 +67,27 @@ A dense point cloud may look impressive in a screenshot. A useful digital twin m
 
 ```mermaid
 flowchart LR
-  A[Completed capture SOP\nsmartphone frames + metadata] --> B[Ingest\nprivacy + quality gates]
-  B --> C[Frame selection\noverlap + coverage]
-  C --> D[Reconstruction adapter\nDUSt3R baseline / clean-room model]
-  D --> E[Global alignment\nconfidence filtering + scale]
-  E --> F[Scene package\ngeometry + poses + confidence]
-  F --> G[Semantic layer\nrooms, doors, obstacles, POIs]
-  G --> H[Navigation graph\nwalkable cells + clearance]
-  F --> I[Web viewer\nLOD geometry + camera path]
-  G --> J[POI index\ntext + spatial filters]
-  H --> K[Route API\nA* / Dijkstra]
+  A["`Completed capture SOP
+  smartphone frames + metadata`"] --> B["`Ingest
+  privacy + quality gates`"]
+  B --> C["`Frame selection
+  overlap + coverage`"]
+  C --> D["`Reconstruction adapter
+  DUSt3R baseline / clean-room model`"]
+  D --> E["`Global alignment
+  confidence filtering + scale`"]
+  E --> F["`Scene package
+  geometry + poses + confidence`"]
+  F --> G["`Semantic layer
+  rooms, doors, obstacles, POIs`"]
+  G --> H["`Navigation graph
+  walkable cells + clearance`"]
+  F --> I["`Web viewer
+  LOD geometry + camera path`"]
+  G --> J["`POI index
+  text + spatial filters`"]
+  H --> K["`Route API
+  A* / Dijkstra`"]
   J --> I
   K --> I
 ```
